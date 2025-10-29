@@ -1,0 +1,112 @@
+# Project: 项目1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = 整除判断.o 整数大小比较.o 输出绝对值.o 奇偶数判断.o 有一门课不及格的学生.o 等差数列末项计算.o 最大数输出.o 苹果和虫子.o 闰年判断.o 晶晶赴约会.o 三角形判断.o 判断能否被3、5、7整除.o 数的性质.o 四季.o 简单计算器.o 反向输出一个四位整数.o 数位之和.o 小乐乐求和.o 含k个3的数.o 角谷猜想.o 计算多项式的值.o 3的倍数之和.o 求平均年龄.o 奥运奖牌计数.o 鸡尾酒疗法.o 救援.o 计算分数加减表达式的值.o 求分数序列和.o 统计正整数位数.o
+LINKOBJ  = 整除判断.o 整数大小比较.o 输出绝对值.o 奇偶数判断.o 有一门课不及格的学生.o 等差数列末项计算.o 最大数输出.o 苹果和虫子.o 闰年判断.o 晶晶赴约会.o 三角形判断.o 判断能否被3、5、7整除.o 数的性质.o 四季.o 简单计算器.o 反向输出一个四位整数.o 数位之和.o 小乐乐求和.o 含k个3的数.o 角谷猜想.o 计算多项式的值.o 3的倍数之和.o 求平均年龄.o 奥运奖牌计数.o 鸡尾酒疗法.o 救援.o 计算分数加减表达式的值.o 求分数序列和.o 统计正整数位数.o
+LIBS     = -L"D:/Dev-Cpp/MinGW64/lib" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = OJ.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+整除判断.o: 整除判断.cpp
+	$(CPP) -c 整除判断.cpp -o 整除判断.o $(CXXFLAGS)
+
+整数大小比较.o: 整数大小比较.cpp
+	$(CPP) -c 整数大小比较.cpp -o 整数大小比较.o $(CXXFLAGS)
+
+输出绝对值.o: 输出绝对值.cpp
+	$(CPP) -c 输出绝对值.cpp -o 输出绝对值.o $(CXXFLAGS)
+
+奇偶数判断.o: 奇偶数判断.cpp
+	$(CPP) -c 奇偶数判断.cpp -o 奇偶数判断.o $(CXXFLAGS)
+
+有一门课不及格的学生.o: 有一门课不及格的学生.cpp
+	$(CPP) -c 有一门课不及格的学生.cpp -o 有一门课不及格的学生.o $(CXXFLAGS)
+
+等差数列末项计算.o: 等差数列末项计算.cpp
+	$(CPP) -c 等差数列末项计算.cpp -o 等差数列末项计算.o $(CXXFLAGS)
+
+最大数输出.o: 最大数输出.cpp
+	$(CPP) -c 最大数输出.cpp -o 最大数输出.o $(CXXFLAGS)
+
+苹果和虫子.o: 苹果和虫子.cpp
+	$(CPP) -c 苹果和虫子.cpp -o 苹果和虫子.o $(CXXFLAGS)
+
+闰年判断.o: 闰年判断.cpp
+	$(CPP) -c 闰年判断.cpp -o 闰年判断.o $(CXXFLAGS)
+
+晶晶赴约会.o: 晶晶赴约会.cpp
+	$(CPP) -c 晶晶赴约会.cpp -o 晶晶赴约会.o $(CXXFLAGS)
+
+三角形判断.o: 三角形判断.cpp
+	$(CPP) -c 三角形判断.cpp -o 三角形判断.o $(CXXFLAGS)
+
+判断能否被3、5、7整除.o: 判断能否被3、5、7整除.cpp
+	$(CPP) -c 判断能否被3、5、7整除.cpp -o 判断能否被3、5、7整除.o $(CXXFLAGS)
+
+数的性质.o: 数的性质.cpp
+	$(CPP) -c 数的性质.cpp -o 数的性质.o $(CXXFLAGS)
+
+四季.o: 四季.cpp
+	$(CPP) -c 四季.cpp -o 四季.o $(CXXFLAGS)
+
+简单计算器.o: 简单计算器.cpp
+	$(CPP) -c 简单计算器.cpp -o 简单计算器.o $(CXXFLAGS)
+
+反向输出一个四位整数.o: 反向输出一个四位整数.cpp
+	$(CPP) -c 反向输出一个四位整数.cpp -o 反向输出一个四位整数.o $(CXXFLAGS)
+
+数位之和.o: 数位之和.cpp
+	$(CPP) -c 数位之和.cpp -o 数位之和.o $(CXXFLAGS)
+
+小乐乐求和.o: 小乐乐求和.cpp
+	$(CPP) -c 小乐乐求和.cpp -o 小乐乐求和.o $(CXXFLAGS)
+
+含k个3的数.o: 含k个3的数.cpp
+	$(CPP) -c 含k个3的数.cpp -o 含k个3的数.o $(CXXFLAGS)
+
+角谷猜想.o: 角谷猜想.cpp
+	$(CPP) -c 角谷猜想.cpp -o 角谷猜想.o $(CXXFLAGS)
+
+计算多项式的值.o: 计算多项式的值.cpp
+	$(CPP) -c 计算多项式的值.cpp -o 计算多项式的值.o $(CXXFLAGS)
+
+3的倍数之和.o: 3的倍数之和.cpp
+	$(CPP) -c 3的倍数之和.cpp -o 3的倍数之和.o $(CXXFLAGS)
+
+求平均年龄.o: 求平均年龄.cpp
+	$(CPP) -c 求平均年龄.cpp -o 求平均年龄.o $(CXXFLAGS)
+
+奥运奖牌计数.o: 奥运奖牌计数.cpp
+	$(CPP) -c 奥运奖牌计数.cpp -o 奥运奖牌计数.o $(CXXFLAGS)
+
+鸡尾酒疗法.o: 鸡尾酒疗法.cpp
+	$(CPP) -c 鸡尾酒疗法.cpp -o 鸡尾酒疗法.o $(CXXFLAGS)
+
+救援.o: 救援.cpp
+	$(CPP) -c 救援.cpp -o 救援.o $(CXXFLAGS)
+
+计算分数加减表达式的值.o: 计算分数加减表达式的值.cpp
+	$(CPP) -c 计算分数加减表达式的值.cpp -o 计算分数加减表达式的值.o $(CXXFLAGS)
+
+求分数序列和.o: 求分数序列和.cpp
+	$(CPP) -c 求分数序列和.cpp -o 求分数序列和.o $(CXXFLAGS)
+
+统计正整数位数.o: 统计正整数位数.cpp
+	$(CPP) -c 统计正整数位数.cpp -o 统计正整数位数.o $(CXXFLAGS)

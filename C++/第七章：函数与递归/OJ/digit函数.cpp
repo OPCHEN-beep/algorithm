@@ -1,0 +1,55 @@
+//# B2145 digit 函数
+//
+//## 题目描述
+//
+//在程序中定义一函数 $digit(n,k)$，它能分离出整数 $n$ 从右边数第 $k$ 个数字。
+//
+//## 输入格式
+//
+//正整数 $n$ 和 $k$。
+//
+//## 输出格式
+//
+//一个数字。
+//
+//## 输入输出样例 #1
+//
+//### 输入 #1
+//
+//```
+//31859 3
+//```
+//
+//### 输出 #1
+//
+//```
+//8
+//```
+//
+//## 说明/提示
+//
+//$n \le 10^9$。
+//
+//$k \le 10$。
+
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int digit(int n, int k)
+{
+    if(k == 1)
+        return n % 10;
+    else
+        return digit(n / 10, k - 1);
+}
+
+int main()
+{
+    int n, k;
+    cin >> n >> k;
+    int ret = digit(n, k);
+    cout << ret << endl;
+    
+    return 0;
+}
