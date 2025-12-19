@@ -1,0 +1,93 @@
+//# P1771 方程的解
+//
+//## 题目描述
+//
+//佳佳碰到了一个难题，请你来帮忙解决。对于不定方程 $a_1+a_2+\cdots +a_{k-1}+a_k=g(x)$，其中 $k\ge 2$ 且 $k\in \mathbb{N}^*$，$x$ 是正整数，$g(x)=x^x \bmod 1000$（即 $x^x$ 除以 $1000$ 的余数），$x,k$ 是给定的数。我们要求的是这个不定方程的正整数解组数。
+//
+//举例来说，当 $k=3,x=2$ 时，方程的解分别为：
+//$$\begin{cases} a_1=1\\ a_2=1\\ a_3=2 \end{cases}$$
+//$$\begin{cases} a_1=1\\ a_2=2\\ a_3=1 \end{cases}$$
+//$$\begin{cases} a_1=2\\ a_2=1\\ a_3=1 \end{cases}$$
+//
+//## 输入格式
+//
+//输入有且只有一行，为用空格隔开的两个正整数，依次为 $k,x$。
+//
+//## 输出格式
+//
+//输出有且只有一行，为方程的正整数解组数。
+//
+//## 输入输出样例 #1
+//
+//### 输入 #1
+//
+//```
+//3 2
+//```
+//
+//### 输出 #1
+//
+//```
+//3
+//```
+//
+//## 说明/提示
+//
+//- 对于 $40\%$ 的数据，$\mathit{ans} \le 10^{16}$；
+//- 对于 $100\%$ 的数据，$k \le 100$，$x \le 2^{31}-1$，$k \le g(x)$。
+//
+//NOI导刊2010提高（01）
+
+#include <iostream>
+using namespace std;
+
+typedef long long LL;
+
+const int N = 1010, M = 110, K = 150;
+int k, x, n;
+int f[N][M][K];
+
+LL qpow(LL a, LL b, LL p)
+{
+    a %= p;
+    LL ret = 1;
+    while(b)
+    {
+        if(b & 1) ret = ret * a % p;
+        a = a * a % p;
+        b >>= 1;
+    }
+    return ret;
+}
+
+void add(int c[], int a[], int b[])
+{
+    for(int i = 0; i < K - 1; i++)
+    {
+        c[i] += a[i] + b[i];
+        c[i + 1] += c[i] / 10;
+        c[i] %= 10;
+    }
+}
+
+int main()
+{
+    cin >> k >> x;
+
+    n = qpow(x, x, 1000);
+
+    for(int i = 0; i < n; i++)
+    {
+        f[i][0][0] = 1;
+        for(int j = 1; j <= min(i, k); j++)
+        {
+            add(f[i][j], f[i - 1][j], f[i - 1][j - 1]);
+        }
+    }
+
+    int p = K - 1;
+    while(f[n - 1][k - 1][p] == 0) p--;
+    while(p >= 0) cout << f[n - 1][k - 1][p--];
+    
+    return 0;
+}
