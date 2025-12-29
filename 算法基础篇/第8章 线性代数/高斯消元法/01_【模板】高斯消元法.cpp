@@ -1,0 +1,114 @@
+//# P3389 【模板】高斯消元法
+//
+//## 题目背景
+//
+//如果想要更好地测试高斯消元算法模板请在通过此题后尝试通过 [SDOI2006 线性方程组](https://www.luogu.com.cn/problem/P2455) 这一题。
+//
+//## 题目描述
+//
+//给定一个线性方程组，对其求解。
+//
+//$$ \begin{cases} a_{1, 1} x_1 + a_{1, 2} x_2 + \cdots + a_{1, n} x_n = b_1 \\ a_{2, 1} x_1 + a_{2, 2} x_2 + \cdots + a_{2, n} x_n = b_2 \\ \cdots \\ a_{n,1} x_1 + a_{n, 2} x_2 + \cdots + a_{n, n} x_n = b_n \end{cases}$$
+//
+//## 输入格式
+//
+//第一行，一个正整数 $n$。
+//
+//第二至 $n+1$ 行，每行 $n+1$ 个整数，为 $ a_1, a_2, \dots ,a_n$ 和 $b$，代表一组方程。
+//
+//## 输出格式
+//
+//共 $n$ 行，每行一个数，第 $i$ 行为 $x_i$（四舍五入保留 $2$ 位小数）。
+//
+//如果不存在唯一解或无解，在第一行输出 `No Solution`.
+//
+//## 输入输出样例 #1
+//
+//### 输入 #1
+//
+//```
+//3
+//1 3 4 5
+//1 4 7 3
+//9 3 2 2
+//```
+//
+//### 输出 #1
+//
+//```
+//-0.97
+//5.18
+//-2.39
+//```
+//
+//## 说明/提示
+//
+//本题 special judge 用于处理可能由于浮点数问题输出 `-0.00` 的情况。若某个 $x_i$ 的解四舍五入后是 `0.00`，那么你的程序输出 `-0.00` 和输出 `0.00` 都是正确的。
+//
+//数据范围：$1 \leq n \leq 100, \left | a_i \right| \leq {10}^4 , \left |b \right| \leq {10}^4 $。保证数据若有解则所有解均满足 $|x_i|\le 10^3$，且 $x_i\pm 10^{-6}$ 和 $x_i$ 四舍五入后的结果相同（即不会因为较小的精度误差导致四舍五入后的结果不同）。
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int N = 110;
+const double eps = 1e-7;
+
+int n;
+double a[N][N];
+
+inline bool zero(double x)
+{
+    return fabs(x) < eps;
+}
+
+int gauss()
+{
+    for(int i = 1; i <= n; i++)
+    {
+        int aim = i;
+        for(int j = 1; j <= n; j++)
+        {
+            if(j < i && !zero(a[j][j])) continue;
+            if(fabs(a[j][i]) > fabs(a[aim][i])) aim = j;
+        }
+
+        if(zero(a[aim][i])) return 0;
+
+        for(int j = 1; j <= n + 1; j++) swap(a[i][j], a[aim][j]);
+
+        for(int j = n + 1; j >= i; j--) a[i][j] /= a[i][i];
+
+        for(int j = 1; j <= n; j++)
+        {
+            if(i == j) continue;
+            double t = a[j][i] / a[i][i];
+
+            for(int k = i; k <= n + 1; k++) a[j][k] -= a[i][k] * t;
+        }
+    }
+
+    return 1;
+}
+
+int main()
+{
+    cin >> n;
+    for(int i = 1; i <= n; i++)
+    {
+        for(int j = 1; j <= n + 1; j++)
+            cin >> a[i][j];
+    }
+
+    int ret = gauss();
+
+    if(ret == 0) cout << "No Solution" << endl;
+    else
+    {
+        for(int i = 1; i <= n; i++)
+            printf("%.2lf\n", a[i][n + 1]);
+    }
+
+    return 0;
+}
